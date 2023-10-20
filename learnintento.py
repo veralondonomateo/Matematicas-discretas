@@ -54,7 +54,7 @@ class Runner3:
             self.rect = self.image.get_rect()
             self.rect.x = x
             self.rect.y = y
-            self.speed = 3 # Velocidad aleatoria
+            self.speed = 5 # Velocidad aleatoria
 
         def move(self):
             self.rect.x += self.speed
@@ -183,8 +183,10 @@ runners32 = [Runner8(runner1_image, 600 , 320)]
 running = True
 winner = None
 game_started = True  # Iniciamos el juego automáticamente
+ganador = False
 
 clock = pygame.time.Clock()
+
 
 while running:
     x = False
@@ -246,6 +248,7 @@ while running:
             finish_line = 780
             if runner.rect.x >= finish_line and winner is None:
                 winner = runner
+                ganador = True
 
 #Corredores Equipo2
 
@@ -298,6 +301,7 @@ while running:
             finish_line = 780
             if runner.rect.x >= finish_line and winner is None:
                 runner.speed = 0
+                ganador = True
 
 #Corredores Equipo3
 
@@ -350,6 +354,12 @@ while running:
             finish_line = 780
             if runner.rect.x >= finish_line and winner is None:
                 runner.speed = 0
+                
+                paisganador = "Jamaica"
+                text = font.render(f'El ganador es {paisganador}', True, text_color)
+
+                ganador = True
+
 
 
 #Corredores Equipo4
@@ -403,6 +413,7 @@ while running:
             finish_line = 780
             if runner.rect.x >= finish_line and winner is None:
                 runner.speed = 0
+                ganador = True
 
 #Corredores Equipo5
 
@@ -455,6 +466,7 @@ while running:
             finish_line = 780
             if runner.rect.x >= finish_line and winner is None:
                 runner.speed = 0
+                ganador = True
 
 #Corredores Equipo6
 
@@ -507,6 +519,7 @@ while running:
             finish_line = 780
             if runner.rect.x >= finish_line and winner is None:
                 runner.speed = 0
+                ganador = True
 
 
 #Corredores Equipo7
@@ -560,6 +573,7 @@ while running:
             finish_line = 780
             if runner.rect.x >= finish_line and winner is None:
                 runner.speed = 0
+                ganador = True
 
 #Corredores Equipo8
 
@@ -613,6 +627,8 @@ while running:
             finish_line = 780
             if runner.rect.x >= finish_line and winner is None:
                 runner.speed = 0
+                ganador = True
+
                 
 
 
@@ -706,10 +722,8 @@ while running:
 
 
     # Si hay un ganador, muestra una alerta
-   
-
-
- 
+    if ganador:
+        screen.blit(text, (300, 300))
 
 
     # Actualiza la pantalla
@@ -718,14 +732,10 @@ while running:
     clock.tick(60)  # Controla la velocidad de actualización a 60 FPS
 
     # Si hay un ganador, detén el juego
+   
     if winner:
         running = False
 
 # Cierra Pygame
 pygame.quit()
 sys.exit()
-
-
-
-
-
